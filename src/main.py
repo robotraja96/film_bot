@@ -1,5 +1,7 @@
-from app.agents import graph
+from app.agents import build_graph
 import uuid
+
+graph = build_graph()
 
 config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 if __name__ == "__main__":

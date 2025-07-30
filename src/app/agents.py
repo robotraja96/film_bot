@@ -37,24 +37,19 @@ llm = ChatGoogleGenerativeAI(
 
 )
 
-
-
 tools = [search_movie, get_movie_reviews]
 tool_node = ToolNode(tools)
 
 
 
-def convo_agent(state :Agent):
-    # The agent expects the full state dictionary as input
-    # and returns a dictionary with the updated state.
-    conversation_agent = create_react_agent(
-    model=llm,
-    prompt=conv_prompt,
-    state_schema=Agent,
-    tools=tools
+
+conversation_agent = create_react_agent(
+model=llm,
+prompt=conv_prompt,
+state_schema=Agent,
+tools=tools,
+checkpointer=memory
 )
-    response = conversation_agent.invoke(state)
-    return response
 
 
 
@@ -62,12 +57,10 @@ def convo_agent(state :Agent):
 def build_graph():
     builder = StateGraph(Agent)
     # builder.add_node("end", END)
-    builder.add_node("conversation_agent", convo_agent)
+    builder.add_node("conversation_agent", conversation_agent)
     builder.add_edge(START, "conversation_agent")
     builder.add_edge("conversation_agent", END)
 
     graph = builder.compile(checkpointer=memory)
 
     return graph
-
-
