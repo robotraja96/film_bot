@@ -126,9 +126,6 @@ git_issues_fix_explanation.md
 src/tty.py
 node_modules
 linux_venv
-src/app/__pycache__/agents.cpython-311.pyc
-src/app/__pycache__/prompts.cpython-311.pyc
-src/app/__pycache__/tools.cpython-311.pyc
 
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
