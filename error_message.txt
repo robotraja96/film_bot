@@ -1,0 +1,118 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): api.themoviedb.org:443
+DEBUG:urllib3.connectionpool:https://api.themoviedb.org:443 "GET /3/search/movie?api_key=1c1d7e3c3af0de4a0ebea64a6f21eccc&query=the%20sinners&page=1&language=en-US HTTP/1.1" 200 None
+WARNING:langchain_google_genai.chat_models:Retrying langchain_google_genai.chat_models._chat_with_retry.<locals>._chat_with_retry in 2.0 seconds as it 
+raised InternalServerError: 500 An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting.Traceback (most recent call last):
+  File "D:\Non Stu Stuff\movie_chatbot\src\app\agents.py", line 94, in <module>
+    ai_response = graph.invoke({"messages": {"role": "user", "content": user_input}}, config=config)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2844, in invoke
+    for chunk in self.stream(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2534, in stream
+    for _ in runner.tick(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\runner.py", line 162, in tick
+    run_with_retry(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\retry.py", line 42, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\utils\runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\utils\runnable.py", line 377, in invoke
+    ret = self.func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\src\app\agents.py", line 61, in convo_agent
+    response = conversation_agent.invoke(state)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2844, in invoke
+    for chunk in self.stream(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\__init__.py", line 2534, in stream
+    for _ in runner.tick(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\runner.py", line 162, in tick
+    run_with_retry(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\pregel\retry.py", line 42, in run_with_retry
+    return task.proc.invoke(task.input, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\utils\runnable.py", line 623, in invoke
+    input = context.run(step.invoke, input, config, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\utils\runnable.py", line 370, in invoke
+    ret = context.run(self.func, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langgraph\prebuilt\chat_agent_executor.py", line 507, in call_model
+    response = cast(AIMessage, model_runnable.invoke(state, config))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 3046, in invoke
+    input_ = context.run(step.invoke, input_, config)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\runnables\base.py", line 5434, in invoke
+    return self.bound.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 395, in invoke
+    self.generate_prompt(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 980, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 799, in generate
+    self._generate_with_cache(
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_core\language_models\chat_models.py", line 1045, in _generate_with_cache      
+    result = self._generate(
+             ^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 961, in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+                                        ^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 196, in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 378, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rajaraman\AppData\Roaming\uv\python\cpython-3.11.12-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rajaraman\AppData\Roaming\uv\python\cpython-3.11.12-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 401, in __get_result   
+    raise self._exception
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\tenacity\__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 194, in _chat_with_retry
+    raise e
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\langchain_google_genai\chat_models.py", line 178, in _chat_with_retry
+    return generation_method(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\ai\generativelanguage_v1beta\services\generative_service\client.py", line 835, in generate_content
+    response = rpc(
+               ^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\gapic_v1\method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\retry\retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\retry\retry_unary.py", line 147, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Non Stu Stuff\movie_chatbot\.venv\Lib\site-packages\google\api_core\grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InternalServerError: 500 An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting
+During task with name 'agent' and id '394d0ab1-a32b-1ca6-ddf1-6bb307cc125e'
+During task with name 'conversation_agent' and id '477bcf9d-d03b-6dac-a159-c2c5d2d10e0a'
