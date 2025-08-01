@@ -47,3 +47,32 @@ def get_movie_reviews(movie_id: str):
     all_reviews = [review["content"] for review in reviews]
 
     return all_reviews
+
+
+@tool
+def fetch_movie_details_by_name(movie_name: str):
+    """
+    Use this function to get details for a movie instantly
+
+    Args:
+        movie_name (str): name of the movie user has asked for
+    """
+
+    movie_fetcher = MovieFetcher(api_key=TMDB_API_KEY, api_token=API_TOKEN)
+    details = movie_fetcher.fetch_movie_details_title(movie_name)
+    return details
+
+
+@tool
+def fetch_movie_details_by_id(movie_id: str):
+    """
+    Use this function to get details for a movie. Use the ID after searching for the movie using the search_movie tool and confirming it with the user.
+
+    Args:
+        movie_id (str): id of the movie
+    """
+
+    movie_fetcher = MovieFetcher(api_key=TMDB_API_KEY, api_token=API_TOKEN)
+    imdb_id = movie_fetcher.get_imdb_id(movie_id)
+    details = movie_fetcher.fetch_movie_details_id(imdb_id)
+    return details
